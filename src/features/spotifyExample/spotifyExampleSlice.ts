@@ -20,18 +20,22 @@ interface TopTracks {
   artists: TopTracksArtists[];
 }
 
+// Criar tipos
 interface SpotifyExampleState {
   displayName: string,
   product: string
   topTracks: TopTracks[]
 }
 
+// TODO: Criar estado inicial
 const initialState: SpotifyExampleState = {
   displayName: '',
   product: '',
   topTracks: []
 };
 
+
+// TODO: Criar reducers aqui
 export const spotifyexampleSlice = createSlice({
   name: 'spotifyExample',
   initialState,
@@ -85,6 +89,7 @@ export const setTopTracksAsync = (accessToken: string): AppThunk => dispatch => 
     headers: myHeaders,
   }).then(response => response.json())
     .then((data) => {
+      console.log(data);
       dispatch(setTopTracks(data.albums.items))
     }).catch((error) => {
       console.log(error);
@@ -95,5 +100,7 @@ export const setTopTracksAsync = (accessToken: string): AppThunk => dispatch => 
       }
     });
 };
+
+// TODO: Criar endpoint para search
 
 export default spotifyexampleSlice.reducer;
